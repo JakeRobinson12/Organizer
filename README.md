@@ -1,53 +1,99 @@
-# OrganizerHere are my suggested steps to achieve the results you want to see, some of them you have I am just adding them here for clarity:
-First, display the current date and time in the header using Day.js.
-$("#currentDay").text(dayjs().format("DD MMMM YYYY, h:mm:ss a"));
-Get the current hour using Day.js and store it in a variable.
-let currentHour = parseInt(dayjs().format("HH"));
-Select all elements with the time-block class and iterate through them using the each function.
-$(".time-block").each(function () {
-  // ...
-});
-Inside the each function:
-For each time block element, extract the hour from its ID by splitting the string on "hour" and getting the second part, which is the number. Convert the extracted number into an integer.
-let blockHour = parseInt($(this).attr("id").split("hour")[1]);
-Compare the extracted hour (blockHour) to the current hour (currentHour) and add the appropriate class to the description element inside the time block.
-• If blockHour is equal to currentHour, add the "present" class.
-• If blockHour is less than currentHour, add the "past" class.
-• If blockHour is greater than currentHour, add the "future" class.
-if (blockHour === currentHour) {
-  $(this).children(".description").addClass("present");
-} else if (blockHour < currentHour) {
-  $(this).children(".description").addClass("past");
-} else {
-  $(this).children(".description").addClass("future");
-}
-Add a click event listener to the save button inside each time block.
-$(".saveBtn").on("click", function () {
-  // ...
-});
-Inside the eventListener:
-When the save button is clicked, get the ID of the time block containing the button and the value of the description field. Save the value in localStorage with the ID as the key.
-var time = $(this).closest('div').attr('id');
-var plan = $(this).siblings(".description").val();
-localStorage.setItem(time, plan);
-Load any user input that was saved in localStorage and set the values of the corresponding textarea elements.
-$("#hour8 .description").val(localStorage.getItem("hour8"));
-// ... repeat for other hour IDs
-Ideally: by following these steps, you will create a dynamic, color-coded time block layout that saves user input in localStorage and loads it when the page is refreshed. The time blocks will be color-coded based on whether they are in the past, present, or future.
-6:25
-Take a second to look these over and make sure you have an understanding of what to do before we resolve the question please :pray:
-6:28
-Your code should be structured as follows:
-$(function () {
-  $("#currentDay").text(dayjs().format("DD MMMM YYYY, h:mm:ss a"));
+# 05 Third-Party APIs: Work Day Scheduler
 
-  // Get the current hour
+## Your Task
 
-  // Iterate through all the time blocks
+Create a simple calendar application that allows a user to save events for each hour of the day by modifying starter code. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
 
-    // Compare the extracted hour to the current hour and add the appropriate class
- 
-    // Save and set
+You'll need to use the [Day.js](https://day.js.org/en/) library to work with date and time. Be sure to read the documentation carefully and concentrate on using Day.js in the browser.
 
+## User Story
 
-  // ... Rest of your code to load items from localStorage ...
+```md
+AS AN employee with a busy schedule
+I WANT to add important events to a daily planner
+SO THAT I can manage my time effectively
+```
+
+## Acceptance Criteria
+
+```md
+GIVEN I am using a daily planner to create a schedule
+WHEN I open the planner
+THEN the current day is displayed at the top of the calendar
+WHEN I scroll down
+THEN I am presented with timeblocks for standard business hours
+WHEN I view the timeblocks for that day
+THEN each timeblock is color coded to indicate whether it is in the past, present, or future
+WHEN I click into a timeblock
+THEN I can enter an event
+WHEN I click the save button for that timeblock
+THEN the text for that event is saved in local storage
+WHEN I refresh the page
+THEN the saved events persist
+```
+
+The following animation demonstrates the application functionality:
+
+<!-- @TODO: create ticket to review/update image) -->
+![A user clicks on slots on the color-coded calendar and edits the events.](./Assets/05-third-party-apis-homework-demo.gif)
+
+## Grading Requirements
+
+> **Note**: If a Challenge assignment submission is marked as “0”, it is considered incomplete and will not count towards your graduation requirements. Examples of incomplete submissions include the following:
+>
+> * A repository that has no code
+>
+> * A repository that includes a unique name but nothing else
+>
+> * A repository that includes only a README file but nothing else
+>
+> * A repository that only includes starter code
+
+This Challenge is graded based on the following criteria:
+
+### Technical Acceptance Criteria: 40%
+
+* Satisfies all of the above acceptance criteria plus the following:
+
+  * Uses a date utility library to work with date and time
+
+### Deployment: 32%
+
+* Application deployed at live URL
+
+* Application loads with no errors
+
+* Application GitHub URL submitted
+
+* GitHub repo contains application code
+
+### Application Quality: 15%
+
+* Application user experience is intuitive and easy to navigate
+
+* Application user interface style is clean and polished
+
+* Application resembles the mock-up functionality provided in the Challenge instructions
+
+### Repository Quality: 13%
+
+* Repository has a unique name
+
+* Repository follows best practices for file structure and naming conventions
+
+* Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+
+* Repository contains multiple descriptive commit messages
+
+* Repository contains quality README file with description, screenshot, and link to deployed application
+
+## Review
+
+You are required to submit the following for review:
+
+* The URL of the deployed application
+
+* The URL of the GitHub repository, with a unique name and a README describing the project
+
+- - -
+© 2023 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
