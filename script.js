@@ -6,9 +6,9 @@ $(document).ready(function() {
 // link function to click event
   $(".saveBtn").on("click", function () {
     var time = $(this).closest('div').attr('id');
-    var plan = $(this).siblings(".description").val();
+    var text = $(this).siblings(".description").val();
 
-    localStorage.setItem(time, plan);
+    localStorage.setItem(time, text);
 
 
   });
