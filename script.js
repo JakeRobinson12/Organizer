@@ -9,10 +9,10 @@ $(document).ready(function() {
     var text = $(this).siblings(".description").val();
 
     localStorage.setItem(time, text);
-
-
   });
+
 //retrieve saved information and reapply to correct div
+
   $("#hour-8 .description").val(localStorage.getItem("hour-8"));
   $("#hour-9 .description").val(localStorage.getItem("hour-9"));
   $("#hour-10 .description").val(localStorage.getItem("hour-10"));
